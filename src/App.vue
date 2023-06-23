@@ -2,50 +2,55 @@
   <!-- <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
   <div class="main">
-    <section class="red">
+    <div style="position:fixed;bottom:0;display:flex;justify-content:center;left:0;right:0;">
+      <div style="">
+        <img src="../src/assets/logo.png" alt="logo"/>
+        <!-- <img src="Fhole" alt="F"> -->
+      </div>
+    </div>
+
+    <div class="section red">
       <h1>Red</h1>
-    </section>
+    </div>
 
-    <section class="orange">
+    <div class="section orange">
       <h1>Orange</h1>
-    </section>
+    </div>
 
-    <section class="yellow">
+    <div class="section yellow">
       <h1>Yellow</h1>
-    </section>
+    </div>
 
-    <section class="green">
+    <div class="section green">
       <h1>Green</h1>
-    </section>
-
-    <section class="blue">
-      <h1>Blue</h1>
-    </section>
-
-    <section class="indigo">
-      <h1>Indigo</h1>
-    </section>
-
-    <section class="violet">
-      <h1>Violet</h1> 
-    </section>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+// import { Options, Vue } from 'vue-class-component';
+// import Fhole from '@/assets/f-hole.svg'
+import { defineComponent } from 'vue';
+// import HelloWorld from './components/HelloWorld.vue';
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
+  export default defineComponent({
+    name: "App",
+
+    setup() {
+      return {
+        // Fhole
+      }
+    }
+  })
 </script>
 
 <style>
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -53,7 +58,6 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 /** Full Page Scroll-Snapping HTML Sections */
 .main {
@@ -64,7 +68,7 @@ export default class App extends Vue {}
 	scroll-snap-type: y mandatory;
 }
 
-section {
+.section {
 	height: 100vh;
 	scroll-snap-align: center;
   padding:0;
@@ -83,38 +87,16 @@ section {
 .green {
 	background: #4caf50;
 }
-.blue {
-	background: #2196f3;
-}
-.indigo {
-	background: #3f51b5;
-}
-.violet {
-	background: #673ab7;
-}
-
 /** Section inner layout */
-section {
+.section {
 	padding: 0;
 	display: flex;
-	flex-direction: column;
+	/* flex-direction: column; */
 	justify-content: center;
 }
 
-/** Reset / Basic styling */
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	color: #fff;
-	font-size: 2vmax;
-}
-
-h1 {
-	font-size: 4em;
+.main::-webkit-scrollbar {
+  display: none;
 }
 
 </style>
