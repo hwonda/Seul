@@ -12,38 +12,30 @@
         >
         </span>
       </div>
-      <div style="position:fixed;bottom:10px;display:flex;justify-content:center;left:0;right:0;">
-        <img src="../src/assets/f-hole.svg"  width="40" height="40" alt="f-hole" style="position:relative;left: -1.5rem;">
-        <img src="../src/assets/f-hole.svg"  width="40" height="40" style="transform: rotateY( 180deg ); position:relative;left: 1.5rem;" alt="f-hole">
-      </div>
-      <section class="fullpage first">
-        <h1>김슬기 Portfolio</h1>
-        <p>by <a href="https://webdeasy.de/?referer=cp-NVOEBL" target="_blank">hwonda</a></p>
-      </section>
-      <section class="fullpage second">
-        <h1>캐러셀, 연혁</h1>
-        <p>made with <a href="https://vuejs.org/" target="_blank">Vue.js</a></p>
-      </section>
-      <section class="fullpage third">
-        <h1>비디오</h1>
-        <p>여러가지 <span><b>유튜브</b></span> videos</p>
-      </section>
-      <section class="fullpage fourth">
-        <h1>contact</h1>
-        <p>by<span><b>e-mail, phone</b></span></p>
-      </section>
+      <MainPage/>
+      <ProfilePage/>
+      <VideoPage/>
+      <ContactPage/>
+    </div>
+    <div class="footer-nav" style="">
+      <img src="../src/assets/f-hole.svg" class="left-hole" alt="f-hole">
+      <img src="../src/assets/f-hole.svg" class="right-hole" alt="f-hole">
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import MainPage from './components/MainPage.vue';
+import ProfilePage from './components/ProfilePage.vue';
+import VideoPage from './components/VideoPage.vue';
+import ContactPage from './components/ContactPage.vue';
 
-const inMove = ref(false)
-const inMoveDelay = ref(1000)
-const activeSection = ref(0)
-const offsets = ref([])
-const touchStartY = ref(0)
+const inMove = ref<boolean>(false)
+const inMoveDelay = ref<number>(1000)
+const activeSection = ref<number>(0)
+const offsets = ref<Array<number>>([])
+const touchStartY = ref<number>(0)
 
 const calculateSectionOffsets = () => {
   let sections = document.getElementsByTagName('section')
@@ -136,113 +128,5 @@ onUnmounted(() => {
   left: 0;
   right: 0;
 }
-body {
-  color: #FFF;
-  font-family: Helvetica, arial, sans-serif;
-  overflow: hidden;
-}
 
-
-h2 {
-  position: fixed;
-}
-
-.fullpage {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0;
-  border:0;
-  margin:0 !important;
-}
-
-h1 {
-  font-size: 6em;
-  margin: 0;
-  text-align: center;
-  padding: 0 1rem;
-}
-
-p {
-  font-size: 1em;
-}
-
-.fullpage a, .fullpage span {
-  text-decoration: none;
-  font-weight: 600;
-  background: rgba(0, 0, 0, 0.2);
-  padding: 5px 10px;
-  color: #fff;
-  margin-left: 5px;
-}
-.first {
-  background-color: #FFC7C7;
-}
-.second {
-  background-color: #FFE2E2;
-}
-.third {
-  background-color: #F6F6F6;
-}
-
-.fourth {
-  background-color: #8785A2;
-}
-
-h1.black {
-  color: #000;
-}
-
-.sections-menu {
-  transform: translateY(-50%);
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-
-.sections-menu .menu-point {
-  width: 3px;
-  height: 30px;
-  background-color: #000;
-  display: block;
-  margin: 0 5px;
-  opacity: .6;
-  transition: .4s ease-in-out all;
-  cursor: pointer;
-}
-
-.sections-menu .menu-point.active {
-  opacity: 1;
-  transform: scale(1.5);
-}
-
-.sections-menu .menu-point:hover {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-:deep(::-webkit-scrollbar-track) {
-  display: none;
-  width: 1px;
-  background: black
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-html, body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-
-@media screen and (max-width: 1200px) {
-  h1 {
-    font-size: 2.5em;
-  }
-}
 </style>
