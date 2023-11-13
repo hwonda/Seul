@@ -6,9 +6,9 @@
           class="menu-point"
           :class="{ active: activeSection == index }"
           @click="scrollToSection(index)"
-          v-for="(offset, index) in offsets"
+          v-for="(_, index) in offsets"
           :key="index"
-          style="display:flex;justify-content:center"
+          style="display:flex;justify-content:center;z-index:9;"
         >
         </span>
       </div>
@@ -18,13 +18,14 @@
       <ContactPage/>
     </div>
     <div class="footer-nav" style="">
-      <img src="../src/assets/f-hole.svg" class="left-hole" alt="f-hole">
-      <img src="../src/assets/f-hole.svg" class="right-hole" alt="f-hole">
+      <img src="../src/assets/images/f-hole.svg" class="left-hole" alt="f-hole">
+      <img src="../src/assets/images/f-hole.svg" class="right-hole" alt="f-hole">
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { onMounted, onUnmounted, ref } from 'vue'
 import MainPage from './components/MainPage.vue';
 import ProfilePage from './components/ProfilePage.vue';
@@ -36,6 +37,19 @@ const inMoveDelay = ref<number>(1000)
 const activeSection = ref<number>(0)
 const offsets = ref<Array<number>>([])
 const touchStartY = ref<number>(0)
+
+onMounted(() => {
+  calculateSectionOffsets()
+  window.addEventListener('wheel', handleMouseWheel, { passive: false })
+  window.addEventListener('touchstart', touchStart, { passive: false })
+  window.addEventListener('touchmove', touchMove, { passive: false })
+})
+
+onUnmounted(() => {
+  window.removeEventListener('wheel', handleMouseWheel)
+  window.removeEventListener('touchstart', touchStart)
+  window.removeEventListener('touchmove', touchMove)
+})
 
 const calculateSectionOffsets = () => {
   let sections = document.getElementsByTagName('section')
@@ -72,6 +86,8 @@ const moveUp = () => {
 }
 
 const scrollToSection = (id: number, force = false) => {
+  console.log('scroll',id);
+  
   if (inMove.value && !force) return false
   activeSection.value = id
   inMove.value = true
@@ -104,23 +120,10 @@ const touchMove = (e: TouchEvent) => {
   return false
 }
 
-onMounted(() => {
-  calculateSectionOffsets()
-  window.addEventListener('wheel', handleMouseWheel, { passive: false })
-  window.addEventListener('touchstart', touchStart, { passive: false })
-  window.addEventListener('touchmove', touchMove, { passive: false })
-})
-
-onUnmounted(() => {
-  window.removeEventListener('wheel', handleMouseWheel)
-  window.removeEventListener('touchstart', touchStart)
-  window.removeEventListener('touchmove', touchMove)
-})
 </script>
 
 
 <style scoped>
-
 #app{
   min-height: 100vh;
   position: absolute;
@@ -128,5 +131,4 @@ onUnmounted(() => {
   left: 0;
   right: 0;
 }
-
 </style>

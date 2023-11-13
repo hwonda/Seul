@@ -36,7 +36,7 @@ p {
   margin-left: 5px;
 }
 .first {
-  background-color: #FFC7C7;
+  background: linear-gradient(135deg, rgb(11, 0, 0), #490000);
 }
 .second {
   background-color: #FFE2E2;
