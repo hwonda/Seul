@@ -1,21 +1,51 @@
 <template>
   <section class="fullpage first background_cello">
-    <div class="text-gradient">Cellist, Seulgi Kim.</div>
+    <div class="subtitle">Fall into</div>
+    <div class="subtitle">the Cello</div>
+    <div class="subtitle">with</div>
+    <div class="text-gradient" :style="{ position: isFixed ? 'fixed' : 'relative'}">Cellist, Seulgi Kim.</div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue';
+
+const isFixed = ref(false);
+const scrollPosition = ref(0);
+
+const handleScroll = () => {
+  scrollPosition.value = window.scrollY;
+  isFixed.value = window.scrollY >= window.innerHeight / 2; // 50vh
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 
 </script>
 
 <style scoped>
-
+.subtitle {
+  color: white;
+  font-size: 20px;
+  font-family: 'Sansita Swashed', cursive;
+  font-weight: 700;
+  text-align: center;
+}
 .background_cello {
   background-image: url('../assets/images/cello_background.jpg');
   z-index:10;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .text-gradient {
   position: relative;
@@ -51,15 +81,29 @@
 
 @keyframes position {
   0% {
-    position: fixed;
-    top: calc(50% - 20px);
     border: 0;
   }
   to{
-    position: fixed;
     border: 0;
   }
 }
 
+@media screen and (max-width: 576px) {
+  .subtitle {
+    font-size: 15px;
+  }
+  .text-gradient {
+    font-size: 30px;
+    animation: blink 0.7s linear infinite alternate, typing 2s steps(30), position 1s steps(60) 2s forwards;
+  }
+  @keyframes typing {
+    0% {
+      width: 0;
+    }
+    to{
+      width: 280px;
+    }
+  }
+}
 
 </style>

@@ -19,10 +19,10 @@ p {
 .fullpage {
   height: 100vh;
   width: 100%;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
   padding: 0;
   border:0;
   margin:0 !important;
@@ -35,12 +35,9 @@ p {
   color: #fff;
   margin-left: 5px;
 }
-.first {
+/* .first {
   background: linear-gradient(135deg, rgb(11, 0, 0), #490000);
-}
-.second {
-  background-color: #FFE2E2;
-}
+} */
 .third {
   background-color: #F6F6F6;
 }
@@ -68,6 +65,7 @@ h1.black {
   opacity: .6;
   transition: .4s ease-in-out all;
   cursor: pointer;
+  filter: drop-shadow(0 0 10px #fff)
 }
 .sections-menu .menu-point.active {
   opacity: 1;
@@ -100,6 +98,7 @@ html, body {
   height: 40px;
   position: relative;
   left: -1.5rem;
+  filter: drop-shadow(0 0 15px #fff)
 }
 .right-hole{
   width: 40px;
@@ -107,10 +106,11 @@ html, body {
   transform: rotateY( 180deg ); 
   position: relative;
   left: 1.5rem;
+  filter: drop-shadow(0 0 15px #fff)
 }
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
   h1 {
     font-size: 2.5em;
   }
-}
+} */
